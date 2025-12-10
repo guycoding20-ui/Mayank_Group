@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Professional Recent Properties Slider</title>
+  <style>
+    :root {
+      --color-maroon: #800000;
+      --color-gold: #d4af37;
+      --color-white: #ffffff;
+      --color-bg: #fafafa;
+      --color-text: #4b1a1a;
+      --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --border-radius: 10px;
+      --transition: 0.4s ease;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--color-bg);
+      font-family: var(--font-main);
+      color: var(--color-text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .carousel-container {
+      max-width: 1180px;
+      margin: 95px auto 60px;
+      padding: 0 24px;
+      position: relative;
+    }
+
+    h2.section-title {
+      color: var(--color-maroon);
+      font-weight: 900;
+      font-size: 36px;
+      margin-bottom: 36px;
+      padding-bottom: 6px;
+      border-bottom: 3.5px solid var(--color-gold);
+      letter-spacing: 2px;
+      font-family: 'Georgia', serif;
+    }
+
+    .carousel-wrapper {
+      overflow: hidden;
+      position: relative;
+      background: var(--color-white);
+      border-radius: var(--border-radius);
+      padding: 30px 0;
+      user-select: none;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.7s ease;
+      will-change: transform;
+      -webkit-overflow-scrolling: touch;
+      cursor: grab;
+    }
+
+    .carousel-item {
+      flex: 0 0 calc(33.3333% - 32px);
+      margin-right: 32px;
+      background: transparent;
+      border-radius: var(--border-radius);
+      position: relative;
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+    }
+
+    .carousel-item:last-child {
+      margin-right: 0;
+    }
+
+    .carousel-item:hover {
+      transform: scale(1.04);
+      z-index: 5;
+    }
+
+    .item-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--border-radius);
+      height: 260px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 15px rgba(196, 165, 65, 0.3);
+    }
+
+    .item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease, filter 0.6s ease;
+      display: block;
+      border-radius: var(--border-radius);
+    }
+
+    .carousel-item:hover .item-image img {
+      transform: scale(1.1);
+      filter: brightness(1.05);
+    }
+
+    .category-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--color-maroon);
+      color: var(--color-white);
+      padding: 7px 16px;
+      font-size: 12.5px;
+      font-weight: 700;
+      border-radius: 24px;
+      text-transform: uppercase;
+      box-shadow: 0 0 10px var(--color-gold);
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .item-details {
+      font-size: 15px;
+      color: var(--color-text);
+    }
+
+    .item-title {
+      font-weight: 800;
+      color: var(--color-maroon);
+      font-size: 21px;
+      margin: 0 0 12px;
+      user-select: text;
+    }
+
+    .item-subtitle {
+      font-style: italic;
+      font-size: 14px;
+      color: #734949cc;
+      margin: 0 0 16px;
+      letter-spacing: 0.05em;
+      user-select: text;
+    }
+
+    .features-list {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px;
+      gap: 24px;
+      font-size: 14px;
+      color: #854949aa;
+      user-select: text;
+    }
+
+    .features-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+    }
+
+    .features-list li span {
+      font-size: 16px;
+      color: var(--color-gold);
+      user-select: none;
+    }
+
+    .location {
+      font-weight: 600;
+      font-size: 14px;
+      color: #6a3d3ddd;
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+      user-select: text;
+      align-items: center;
+    }
+
+    .location span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .location svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--color-gold);
+      flex-shrink: 0;
+    }
+
+    .btn-view {
+      display: block;
+      background-color: var(--color-gold);
+      color: var(--color-maroon);
+      border-radius: var(--border-radius);
+      font-weight: 900;
+      font-size: 16px;
+      padding: 14px 0;
+      text-align: center;
+      text-transform: uppercase;
+      text-decoration: none;
+      user-select: none;
+      letter-spacing: 1px;
+      border: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      box-shadow: 0 3px 10px rgba(212, 175, 55, 0.4);
+    }
+
+    .btn-view:hover,
+    .btn-view:focus {
+      background-color: var(--color-maroon);
+      color: var(--color-gold);
+      box-shadow: 0 6px 20px rgba(139, 45, 45, 0.7);
+    }
+
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--color-maroon);
+      color: var(--color-gold);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: 900;
+      font-size: 24px;
+      text-align: center;
+      line-height: 44px;
+      user-select: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      z-index: 10;
+      border: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+    .nav-arrow:hover {
+      background-color: var(--color-gold);
+      color: var(--color-maroon);
+      box-shadow: 0 4px 16px rgba(212,175,55,0.7);
+    }
+    .nav-prev {
+      left: -40px;
+    }
+    .nav-next {
+      right: -40px;
+    }
+
+    .dots-nav {
+      position: absolute;
+      bottom: 12px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      user-select: none;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      margin: 0 12px;
+      border-radius: 50%;
+      background-color: #ccc;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
+    }
+
+    .dot.active {
+      background-color: var(--color-gold);
+      box-shadow: 0 0 14px var(--color-gold);
+    }
+
+    @media (max-width: 900px) {
+      .carousel-container {
+        max-width: 90vw;
+        padding: 0 20px;
+      }
+      .carousel-item {
+        flex: 0 0 calc(50% - 28px);
+        margin-right: 28px;
+      }
+      .nav-prev {
+        left: 4px;
+      }
+      .nav-next {
+        right: 4px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .carousel-container {
+        padding: 0 16px;
+      }
+      .carousel-item {
+        flex: 0 0 100%;
+        margin-right: 0;
+      }
+      .nav-prev, .nav-next {
+        display: none;
+      }
+      .dots-nav {
+        bottom: 6px;
+        padding: 0 0 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="carousel-container" aria-label="Recent Properties in professional style">
+    <h2 class="section-title">Featured Properties</h2>
+    <div class="carousel-wrapper">
+      <div class="carousel-track" id="carouselTrack">
+        <article class="carousel-item" tabindex="0" role="group" aria-label="Property IMPERIAL PALMS">
+          <div class="item-image">
+            <img src="banner1.png" alt="IMPERIAL PALMS property" />
+            <div class="category-badge">Vasai Espan</div>
+          </div>
+          <div class="item-details">
+            <h3 class="item-title">IMPERIAL PALMS</h3>
+            <div class="item-subtitle">G14</div>
+            <ul class="features-list" aria-label="Property features">
+              <li><span>🏢</span>1BHK, 2BHK</li>
+            </ul>
+            <div class="location">
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM12 11.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Waliv, Vasai E</span>
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M8 12h8"/></svg>6 Kms</span>
+            </div>
+            <a href="https://imperiallifestyle.inimperial-palms.php" class="btn-view" aria-label="View more IMPERIAL PALMS property">View More</a>
+          </div>
+        </article>
+
+        <article class="carousel-item" tabindex="0" role="group" aria-label="Property IMPERIAL PARAMOUNT">
+          <div class="item-image">
+            <img src="banner2.png" alt="IMPERIAL PARAMOUNT property" />
+            <div class="category-badge">Nalasopara W</div>
+          </div>
+          <div class="item-details">
+            <h3 class="item-title">IMPERIAL PARAMOUNT</h3>
+            <div class="item-subtitle">G17</div>
+            <ul class="features-list" aria-label="Property features">
+              <li><span>🏢</span>SHOPS - 1BHK, 2BHK, 3BHK</li>
+            </ul>
+            <div class="location">
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM12 11.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Lodha Park, Stn. Rd. NSP W</span>
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M8 12h8"/></svg>1.5 Kms</span>
+            </div>
+            <a href="https://imperiallifestyle.inimperial-paramount.php" class="btn-view" aria-label="View more IMPERIAL PARAMOUNT property">View More</a>
+          </div>
+        </article>
+
+        <article class="carousel-item" tabindex="0" role="group" aria-label="Property IMPERIAL SAI COMPLEX">
+          <div class="item-image">
+            <img src="banner3.png" alt="IMPERIAL SAI COMPLEX property" />
+            <div class="category-badge">Vasai Espan</div>
+          </div>
+          <div class="item-details">
+            <h3 class="item-title">IMPERIAL SAI COMPLEX</h3>
+            <div class="item-subtitle">G15</div>
+            <ul class="features-list" aria-label="Property features">
+              <li><span>🏢</span>SHOPS - 1BHK, 2BHK</li>
+            </ul>
+            <div class="location">
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM12 11.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Waliv, Vasai E</span>
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M8 12h8"/></svg>5.6 Kms</span>
+            </div>
+            <a href="https://imperiallifestyle.inimperial-saicomplex.php" class="btn-view" aria-label="View more IMPERIAL SAI COMPLEX property">View More</a>
+          </div>
+        </article>
+
+        <!-- Duplicates for infinite loop -->
+        <article class="carousel-item" tabindex="0" aria-hidden="true">
+          <div class="item-image">
+            <img src="banner1.png" alt="IMPERIAL PALMS property duplicate" />
+            <div class="category-badge">Vasai Espan</div>
+          </div>
+          <div class="item-details">
+            <h3 class="item-title">IMPERIAL PALMS</h3>
+            <div class="item-subtitle">G14</div>
+            <ul class="features-list" aria-label="Property features">
+              <li><span>🏢</span>1BHK, 2BHK</li>
+            </ul>
+            <div class="location">
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM12 11.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Waliv, Vasai E</span>
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M8 12h8"/></svg>6 Kms</span>
+            </div>
+            <a href="https://imperiallifestyle.inimperial-palms.php" class="btn-view" aria-label="View more IMPERIAL PALMS property">View More</a>
+          </div>
+        </article>
+        <article class="carousel-item" tabindex="0" aria-hidden="true">
+          <div class="item-image">
+            <img src="banner2.png" alt="IMPERIAL PARAMOUNT property duplicate" />
+            <div class="category-badge">Nalasopara W</div>
+          </div>
+          <div class="item-details">
+            <h3 class="item-title">IMPERIAL PARAMOUNT</h3>
+            <div class="item-subtitle">G17</div>
+            <ul class="features-list" aria-label="Property features">
+              <li><span>🏢</span>SHOPS - 1BHK, 2BHK, 3BHK</li>
+            </ul>
+            <div class="location">
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM12 11.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Lodha Park, Stn. Rd. NSP W</span>
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M8 12h8"/></svg>1.5 Kms</span>
+            </div>
+            <a href="https://imperiallifestyle.inimperial-paramount.php" class="btn-view" aria-label="View more IMPERIAL PARAMOUNT property">View More</a>
+          </div>
+        </article>
+        <article class="carousel-item" tabindex="0" aria-hidden="true">
+          <div class="item-image">
+            <img src="banner3.png" alt="IMPERIAL SAI COMPLEX property duplicate" />
+            <div class="category-badge">Vasai Espan</div>
+          </div>
+          <div class="item-details">
+            <h3 class="item-title">IMPERIAL SAI COMPLEX</h3>
+            <div class="item-subtitle">G15</div>
+            <ul class="features-list" aria-label="Property features">
+              <li><span>🏢</span>SHOPS - 1BHK, 2BHK</li>
+            </ul>
+            <div class="location">
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM12 11.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Waliv, Vasai E</span>
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M8 12h8"/></svg>5.6 Kms</span>
+            </div>
+            <a href="https://imperiallifestyle.inimperial-saicomplex.php" class="btn-view" aria-label="View more IMPERIAL SAI COMPLEX property">View More</a>
+          </div>
+        </article>
+      </div>
+      <button class="nav-arrow nav-prev" aria-label="Previous property">&#10094;</button>
+      <button class="nav-arrow nav-next" aria-label="Next property">&#10095;</button>
+      <div class="dots-nav" role="tablist" aria-label="Property Pagination"></div>
+    </div>
+  </section>
+
+  <script>
+    (function() {
+      const track = document.getElementById('carouselTrack');
+      let items = Array.from(track.querySelectorAll('.carousel-item'));
+      const prevBtn = document.querySelector('.nav-prev');
+      const nextBtn = document.querySelector('.nav-next');
+      const dotsNav = document.querySelector('.dots-nav');
+      const itemCount = items.length / 2; // half original, half duplicates
+
+      let currentIndex = 0;
+      let autoSlideInterval;
+      const slideGap = 32; // px gap between items
+
+      // Create dots for original items only
+      for (let i = 0; i < itemCount; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'dot';
+        dot.setAttribute('aria-label', `Go to property ${i + 1}`);
+        dot.setAttribute('role', 'tab');
+        dot.addEventListener('click', () => {
+          goToSlide(i);
+          resetAutoSlide();
+        });
+        dotsNav.appendChild(dot);
+      }
+      const dots = dotsNav.querySelectorAll('.dot');
+      dots[0].classList.add('active');
+
+      // Get width of an item for calculations
+      function getItemWidth() {
+        if (!items.length) return 0;
+        const style = getComputedStyle(items[0]);
+        const width = items[0].offsetWidth;
+        const marginRight = parseInt(style.marginRight);
+        return width + marginRight;
+      }
+
+      function updateSliderPosition() {
+        const itemWidth = getItemWidth();
+        track.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+        dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex % itemCount));
+      }
+
+      // When index exceeds length, reset to beginning for infinite effect
+      function goToSlide(index) {
+        currentIndex = index;
+        updateSliderPosition();
+      }
+      function nextSlide() {
+        currentIndex++;
+        if (currentIndex >= items.length) {
+          // Reset instantly without animation to start for infinite loop illusion
+          track.style.transition = 'none';
+          currentIndex = itemCount;
+          updateSliderPosition();
+          // Trigger reflow and restore transition
+          void track.offsetWidth;
+          track.style.transition = 'transform 0.7s ease';
+          currentIndex++;
+        }
+        updateSliderPosition();
+      }
+      function prevSlide() {
+        currentIndex--;
+        if (currentIndex < 0) {
+          track.style.transition = 'none';
+          currentIndex = items.length - itemCount;
+          updateSliderPosition();
+          void track.offsetWidth;
+          track.style.transition = 'transform 0.7s ease';
+          currentIndex--;
+        }
+        updateSliderPosition();
+      }
+
+      prevBtn.addEventListener('click', () => {
+        prevSlide();
+        resetAutoSlide();
+      });
+      nextBtn.addEventListener('click', () => {
+        nextSlide();
+        resetAutoSlide();
+      });
+
+      function resetAutoSlide() {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = setInterval(nextSlide, 7000);
+      }
+
+      // Touch swipe support
+      let touchStartX = null;
+      track.addEventListener('touchstart', e => {
+        touchStartX = e.touches[0].clientX;
+      });
+      track.addEventListener('touchend', e => {
+        if (touchStartX === null) return;
+        let touchEndX = e.changedTouches[0].clientX;
+        let diffX = touchEndX - touchStartX;
+        if (diffX > 50) prevSlide();
+        else if (diffX < -50) nextSlide();
+        touchStartX = null;
+        resetAutoSlide();
+      });
+
+      // Initialize slider
+      updateSliderPosition();
+      resetAutoSlide();
+
+      // Update items array if window resizes
+      window.addEventListener('resize', () => {
+        items = Array.from(track.querySelectorAll('.carousel-item'));
+        updateSliderPosition();
+      });
+    })();
+  </script>
+</body>
+</html>

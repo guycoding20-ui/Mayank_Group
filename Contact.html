@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Mayank Group</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Sen:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHq6zxQyMv1Xw81rVKxFNyrTlelENtTyfIhr2n2ILEQxUkS8zjspTykhLynVbk0+T7P6FQFA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --color-maroon: #72263b;
+            --color-gold: #c79731;
+            --color-white: #ffffff;
+            --theme-general-font: 'Barlow', sans-serif;
+            --theme-highlight-font: 'Sen', sans-serif;
+        }
+        .text-\[\#800000\] { color: var(--color-maroon);}
+        .text-\[\#6D2932\] { color: var(--color-maroon);}
+        .bg-\[\#6D2932\] { background-color: var(--color-maroon);}
+        .border-\[\#D4AF37\]\/30 { border-color: rgba(199, 151, 49, 0.3);}
+        .hover\:text-\[\#D4AF37\]:hover { color: var(--color-gold);}
+        .hover\:bg-\[\#800000\]:hover { background-color: var(--color-maroon);}
+        body { font-family: var(--theme-general-font); background: var(--color-white); color: var(--color-maroon);}
+        h1, h2, h3, h4, h5, h6 { font-family: var(--theme-highlight-font);}
+        .dropdown:hover > div, .dropdown:focus-within > div {
+            display: block!important; opacity: 1; transform: translateY(0);
+        }
+        .dropdown > div { opacity: 0; pointer-events: none; transform: translateY(-5px);
+            transition: opacity 300ms, transform 300ms;
+        }
+        .dropdown:hover > div, .dropdown:focus-within > div { pointer-events: auto; }
+        ::placeholder { 
+            color: #72263ba0; /* maroon with opacity */
+            opacity: 1; 
+        }
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] { 
+            -moz-appearance: textfield; 
+        }
+        .form-input:focus { 
+            outline: none; 
+            border-color: #72263b6b; 
+        }
+        /* WhatsApp Button Styles */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+        .whatsapp-button:active {
+            transform: scale(0.95);
+        }
+        .whatsapp-button img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+        }
+        /* Responsive WhatsApp Button */
+        @media (max-width: 640px) {
+            .whatsapp-button {
+                width: 56px;
+                height: 56px;
+                bottom: 16px;
+                right: 16px;
+            }
+            .whatsapp-button img {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        /* Pulse animation */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        .whatsapp-button::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="font-sans text-[#72263b] bg-white">
+    <!-- Navbar -->
+    <nav class="bg-white sticky top-0 z-30 shadow-lg border-b border-[#72263b]/20" aria-label="Main navigation">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+          <div class="flex justify-between items-center py-4">
+            <!-- Logo and Brand -->
+            <div class="flex items-center">
+              <img src="MGL.png" style="width: 250px; height: 60px;" alt="Mayank Group Logo" class="h-12 w-auto mr-3 rounded-md shadow-inner">
+            </div>
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8 text-base text-[#72263b] font-medium">
+              <a href="index.html" class="hover:text-[#c79731] transition">Home</a>
+      
+              <!-- About Dropdown (desktop, + icon) -->
+              <div class="relative dropdown group" tabindex="0">
+                <button aria-haspopup="true" aria-expanded="false" aria-label="Toggle About menu"
+                        class="hover:text-[#c79731] flex items-center focus:outline-none transition"
+                        type="button">
+                  About
+                  <span class="ml-1 text-lg leading-none group-hover:text-[#c79731]">+</span>
+                </button>
+                <div class="absolute left-0 mt-2 w-52 bg-white border border-[#c79731]/30 rounded-xl shadow-xl text-[#72263b] hidden opacity-0 translate-y-[-5px]">
+                  <a href="index.html" class="block px-4 py-2 hover:bg-[#72263b]/10 rounded-t-xl transition text-base">
+                    About Mayank Group
+                  </a>
+                  <a href="PromiseMG.html" class="block px-4 py-2 hover:bg-[#72263b]/10 transition text-base">
+                    Promise by Mayank Group
+                  </a>
+                  <a href="HistoryMG.html" class="block px-4 py-2 hover:bg-[#72263b]/10 rounded-b-xl transition text-base">
+                    Mayank Group History
+                  </a>
+                </div>
+              </div>
+      
+              <a href="projectV.html" class="hover:text-[#c79731] transition">Projects</a>
+              <a href="PartnersMG.html" class="hover:text-[#c79731] transition">Partners</a>
+              <a href="Contact.html" aria-current="page" class="text-[#c79731] transition font-bold">Contact</a>
+            </div>
+            <!-- Hamburger for Mobile -->
+            <div class="md:hidden flex items-center">
+              <button id="hamburger" class="focus:outline-none p-2 rounded-lg hover:bg-[#72263b]/10"
+                      aria-controls="mobileMenu" aria-label="Toggle mobile menu">
+                <svg class="w-8 h-8" fill="none" stroke="#72263b" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <!-- Mobile Menu -->
+          <div id="mobileMenu" class="md:hidden hidden flex-col space-y-1 pb-4 bg-white text-[#72263b]">
+            <a href="index.html" class="block px-4 py-2 hover:bg-[#72263b]/10 rounded transition font-medium text-base">
+              Home
+            </a>
+      
+            <div class="relative">
+              <button class="w-full flex justify-between items-center px-4 py-2 hover:bg-[#72263b]/10 rounded transition focus:outline-none text-left font-medium text-sm"
+                      onclick="toggleMobileDropdown('aboutMobileDropdown', this)" type="button">
+                About
+                <span class="ml-2 text-lg leading-none">+</span>
+              </button>
+              <div id="aboutMobileDropdown" class="h-0 overflow-hidden transition-all duration-300 ease-in-out ml-4 mt-1">
+                <a href="index.html" class="block px-8 py-2 text-base hover:bg-[#72263b]/10 rounded transition">
+                  About Mayank Group
+                </a>
+                <a href="PromiseMG.html" class="block px-8 py-2 text-base hover:bg-[#72263b]/10 rounded transition">
+                  Promise by Mayank Group
+                </a>
+                <a href="HistoryMG.html" class="block px-8 py-2 text-base hover:bg-[#72263b]/10 rounded transition">
+                  Mayank Group History
+                </a>
+              </div>
+            </div>
+      
+            <a href="projectV.html" class="block px-4 py-2 hover:bg-[#72263b]/10 rounded transition font-medium text-base">
+              Projects
+            </a>
+            <a href="PartnersMG.html" class="block px-4 py-2 hover:bg-[#72263b]/10 rounded transition font-medium text-base">
+              Partners
+            </a>
+            <a href="Contact.html" class="block px-4 py-2 text-[#c79731] font-bold bg-[#72263b]/5 rounded transition text-base">
+              Contact
+            </a>
+          </div>
+        </div>
+      </nav>
+      
+
+    <div class="min-h-screen flex items-center justify-center p-4 sm:p-8 bg-white">
+        <div class="w-full max-w-xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-10 mt-12">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#72263b]">Mayank Group</h1>
+                <p class="text-[#72263b]/80 mt-2 text-base sm:text-lg">The home is where your story begins</p>
+            </div>
+            <!-- Contact Form -->
+            <form id="contactForm" class="space-y-10">
+                <!-- First Name -->
+                <div class="relative">
+                    <label for="firstName" class="absolute -top-3.5 left-0 text-sm text-[#72263b]">First Name</label>
+                    <input type="text" id="firstName" name="firstName" class="form-input w-full bg-transparent border-0 border-b-2 border-[#72263b]/50 py-2 text-[#72263b] focus:border-[#72263b] transition-colors duration-300" placeholder="John" required>
+                </div>
+                <!-- Last Name -->
+                <div class="relative">
+                    <label for="lastName" class="absolute -top-3.5 left-0 text-sm text-[#72263b]">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" class="form-input w-full bg-transparent border-0 border-b-2 border-[#72263b]/50 py-2 text-[#72263b] focus:border-[#72263b] transition-colors duration-300" placeholder="Doe" required>
+                </div>
+                <!-- Phone Number -->
+                <div class="relative">
+                    <label for="phone" class="absolute -top-3.5 left-0 text-sm text-[#72263b]">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" class="form-input w-full bg-transparent border-0 border-b-2 border-[#72263b]/50 py-2 text-[#72263b] focus:border-[#72263b] transition-colors duration-300" placeholder="(123) 456-7890" required>
+                </div>
+                <!-- Email Address -->
+                <div class="relative">
+                    <label for="email" class="absolute -top-3.5 left-0 text-sm text-[#72263b]">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-input w-full bg-transparent border-0 border-b-2 border-[#72263b]/50 py-2 text-[#72263b] focus:border-[#72263b] transition-colors duration-300" placeholder="john.doe@example.com" required>
+                </div>
+                <!-- Message Field -->
+                <div class="relative">
+                    <label for="message" class="absolute -top-3.5 left-0 text-sm text-[#72263b]">Message</label>
+                    <textarea id="message" name="message" rows="4" class="form-input w-full bg-transparent border-0 border-b-2 border-[#72263b]/50 py-2 text-[#72263b] focus:border-[#72263b] transition-colors duration-300 resize-none" placeholder="I'm interested in..." required></textarea>
+                </div>
+                <!-- Submit Button and Status Message -->
+                <div class="text-center pt-4">
+                    <button type="submit" class="bg-[#72263b] text-white font-bold py-3 px-12 rounded-lg hover:bg-[#c79731] transition-all duration-300 ease-in-out transform hover:scale-105">
+                        Send Message
+                    </button>
+                    <p id="statusMessage" class="mt-4 text-sm text-[#72263b]/90 h-5"></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-white pt-12 border-t border-[#72263b]/20" aria-labelledby="footer-title">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 text-center lg:text-left">
+                <!-- Logo & Socials -->
+                <section>
+                    <div class="mb-6">
+                        <div class="w-full max-w-xs mx-auto lg:mx-0">
+                            <img
+                                src="MGL.png"
+                                alt="Mayank Group Logo"
+                                class="max-h-24 w-auto rounded-md shadow-inner"
+                            />
+                        </div>
+                        <p class="mt-4 text-base leading-relaxed text-[#72263b]">
+                            Giving old cities, a new life… with a touch of luxury where memories once lived, dreams now begin to bloom. Where the land once wrote history, the future now writes its story.
+                            <br />
+                            <strong class="text-sm block mt-2 text-[#72263b]">Reach Out to us on…</strong>
+                        </p>
+                    </div>
+                    <!-- Social Media Icons -->
+                    <div class="flex space-x-4 text-2xl mt-2 justify-center lg:justify-start">
+                        <a href="#" class="text-[#72263b] hover:text-[#c79731] transition duration-300 rounded-full p-2" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-[#72263b] hover:text-[#c79731] transition duration-300 rounded-full p-2" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-[#72263b] hover:text-[#c79731] transition duration-300 rounded-full p-2" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/mayank.group?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="text-[#72263b] hover:text-[#c79731] transition duration-300 rounded-full p-2" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </section>
+                <!-- Legal Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-[#72263b]">Legal</h3>
+                    <ul class="space-y-2 text-[#72263b]">
+                        <li><a href="#" class="footer-link hover:text-[#c79731] transition block">Terms and Conditions</a></li>
+                        <li><a href="#" class="footer-link hover:text-[#c79731] transition block">Privacy Policy</a></li>
+                        <li><a href="#" class="footer-link hover:text-[#c79731] transition block">Copyright Notice</a></li>
+                        <li><a href="#" class="footer-link hover:text-[#c79731] transition block">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <!-- Properties List -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-[#72263b]">Properties</h3>
+                    <ul class="space-y-2 text-[#72263b]">
+                        <li><a href="#" class="footer-link hover:text-[#c79731] transition block">Vasai</a></li>
+                        <li><a href="#" class="footer-link hover:text-[#c79731] transition block">Nallasopara</a></li>
+                        <li><a href="#" class="footer-link hover:text-[#c79731] transition block">Boisar</a></li>
+                        <li><a href="#" class="footer-link hover:text-[#c79731] transition block">All Projects</a></li>
+                    </ul>
+                </div>
+                <!-- Contact Details -->
+                <div class="flex flex-col">
+                    <h4 class="text-lg font-semibold mb-4 text-[#72263b]">Contact Details</h4>
+                    <address class="not-italic text-base text-[#72263b] space-y-2 mb-4">
+                        <p>Shop No.02, Tania Sargam CHS LTD., Near The Capital Mall, Nallasopara East 401209</p>
+                        <p class="font-semibold text-[#72263b]">+91 9850841234</p>
+                        <p><a href="mailto:mayankreality@gmail.com" class="footer-link hover:text-[#c79731] transition">mayankreality@gmail.com</a></p>
+                    </address>
+                    <a href="Contact.html" class="mt-auto inline-block text-center py-3 px-6 bg-[#72263b] text-white text-base font-semibold rounded-lg shadow-md hover:bg-[#c79731] transition duration-300 transform hover:scale-[1.02]">
+                        Contact Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- COPYRIGHT SECTION -->
+    <div class="bg-white border-t border-[#72263b]/20 py-4 text-sm text-[#72263b]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
+            <p class="text-center md:text-left">
+                &copy; 2025 Mayank Group. All Rights Reserved.
+            </p>
+            <ul class="flex justify-center md:justify-end space-x-3 sm:space-x-5">
+                <li><a href="#" class="footer-link hover:text-[#c79731] transition">Privacy & Policy</a></li>
+                <li class="hidden sm:inline text-[#72263b]">|</li>
+                <li><a href="#" class="footer-link hover:text-[#c79731] transition">Site Map</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/919850841234" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="whatsapp-button" 
+       aria-label="Contact us on WhatsApp"
+       title="Chat with us on WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+             alt="WhatsApp Icon" 
+             class="whatsapp-icon">
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (hamburger && mobileMenu) {
+                hamburger.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            window.toggleMobileDropdown = function(dropdownId, btn) {
+                const dropdown = document.getElementById(dropdownId);
+                const icon = btn.querySelector('svg');
+                if (dropdown.classList.contains('h-0')) {
+                    dropdown.classList.remove('h-0', 'hidden');
+                    dropdown.style.height = 'auto';
+                    const h = dropdown.scrollHeight + 'px';
+                    dropdown.style.height = '0';
+                    setTimeout(() => { dropdown.style.height = h; }, 0);
+                    icon.classList.add('rotate-180');
+                } else {
+                    dropdown.style.height = dropdown.scrollHeight + 'px';
+                    setTimeout(() => { dropdown.style.height = '0'; }, 0);
+                    dropdown.addEventListener('transitionend', function handler() {
+                        if (dropdown.style.height === '0px') {
+                            dropdown.classList.add('h-0', 'hidden');
+                        }
+                        dropdown.removeEventListener('transitionend', handler);
+                    });
+                    icon.classList.remove('rotate-180');
+                }
+            };
+        });
+
+        // Form Submission Script
+        const form = document.getElementById('contactForm');
+        const statusMessage = document.getElementById('statusMessage');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            if (form.checkValidity()) {
+                statusMessage.textContent = 'Thank you! Your message has been sent.';
+                statusMessage.style.color = '#2c6b2e';
+                setTimeout(() => {
+                    form.reset();
+                    statusMessage.textContent = '';
+                }, 4000);
+            } else {
+                statusMessage.textContent = 'Please fill out all required fields correctly.';
+                statusMessage.style.color = '#a32121';
+            }
+        });
+    </script>
+</body>
+</html>

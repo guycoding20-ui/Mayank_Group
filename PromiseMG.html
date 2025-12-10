@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise by Mayank Group</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Sen:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHq6zxQyMv1Xw81rVKxFNyrTlelENtTyfIhr2n2ILEQxUkS8zjspTykhLynVbk0+T7P6FQFA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --color-maroon: #72263b;
+            --color-gold: #c79731;
+            --color-white: #ffffff;
+            --theme-general-font: 'Barlow', sans-serif;
+            --theme-highlight-font: 'Sen', sans-serif;
+        }
+        .text-\[\#800000\] { color: var(--color-maroon);}
+        .text-\[\#6D2932\] { color: var(--color-maroon);}
+        .bg-\[\#6D2932\] { background-color: var(--color-maroon);}
+        .border-\[\#D4AF37\]\/30 { border-color: rgba(199, 151, 49, 0.3);}
+        .hover\:text-\[\#D4AF37\]:hover { color: var(--color-gold);}
+        .hover\:bg-\[\#800000\]:hover { background-color: var(--color-maroon);}
+        body { font-family: var(--theme-general-font); background: var(--color-white); color: var(--color-maroon);}
+        h1, h2, h3, h4, h5, h6 { font-family: var(--theme-highlight-font);}
+        .dropdown:hover > div, .dropdown:focus-within > div {
+            display: block!important; opacity: 1; transform: translateY(0);
+        }
+        .dropdown > div { opacity: 0; pointer-events: none; transform: translateY(-5px);
+            transition: opacity 300ms, transform 300ms;
+        }
+        .dropdown:hover > div, .dropdown:focus-within > div { pointer-events: auto; }
+        .project-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="font-sans text-[#72263b] bg-white">
+
+    <header>
+        <nav class="bg-white sticky top-0 z-30 shadow-lg border-b border-[#72263b]/20" aria-label="Main navigation">
+          <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="flex justify-between items-center py-4">
+              <div class="flex items-center">
+                <img src="MGL.png" style="width: 270px; height: 60px;" alt="Mayank Group Logo" class="h-12 w-auto mr-3 rounded-md shadow-inner">
+              </div>
+      
+              <!-- DESKTOP MENU -->
+              <div class="hidden md:flex items-center space-x-8 text-base font-medium">
+                <a href="index.html" class="text-[#72263b] hover:text-[#c79731] transition">Home</a>
+      
+                <!-- ABOUT DROPDOWN DESKTOP (PLUS ICON) -->
+                <div class="relative group font-medium" tabindex="0">
+                  <button aria-haspopup="true"
+                          aria-expanded="false"
+                          aria-label="Toggle About menu"
+                          class="text-[#72263b] hover:text-[#c79731] flex items-center focus:outline-none transition"
+                          type="button">
+                    About
+                    <span class="ml-1 text-lg leading-none group-hover:text-[#c79731]">+</span>
+                  </button>
+      
+                  <div class="absolute left-0 mt-2 w-52 bg-white border border-[#c79731]/30 rounded-xl shadow-xl
+                              text-[#72263b] opacity-0 invisible translate-y-1
+                              group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
+                              transition-all duration-300 font-medium">
+                    <a href="index.html"
+                       class="block px-4 py-2 text-[#72263b] hover:bg-[#72263b]/10 rounded-t-xl transition text-base">
+                      About Mayank Group
+                    </a>
+                    <a href="PromiseMG.html" aria-current="page"
+                       class="block px-4 py-2 text-[#c79731] bg-[#72263b]/10 font-bold transition text-base">
+                      Promise by Mayank Group
+                    </a>
+                    <a href="HistoryMG.html"
+                       class="block px-4 py-2 text-[#72263b] hover:bg-[#72263b]/10 rounded-b-xl transition text-base">
+                      Mayank Group History
+                    </a>
+                  </div>
+                </div>
+      
+                <a href="projectV.html" class="text-[#72263b] hover:text-[#c79731] transition">Projects</a>
+                <a href="PartnersMG.html" class="text-[#72263b] hover:text-[#c79731] transition">Partners</a>
+                <a href="Contact.html" class="text-[#72263b] hover:text-[#c79731] transition">Contact</a>
+              </div>
+      
+              <!-- HAMBURGER BUTTON -->
+              <div class="md:hidden flex items-center">
+                <button id="hamburger"
+                        class="focus:outline-none p-2 rounded-lg hover:bg-[#72263b]/10"
+                        aria-controls="mobileMenu"
+                        aria-label="Toggle mobile menu"
+                        type="button">
+                  <svg class="w-8 h-8" fill="none" stroke="#72263b" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+      
+            <!-- MOBILE MENU -->
+            <div id="mobileMenu" class="md:hidden hidden flex-col space-y-1 pb-4 bg-white font-medium">
+              <a href="index.html" class="block px-4 py-2 text-[#72263b] hover:bg-[#72263b]/10 rounded transition text-base">
+                Home
+              </a>
+      
+              <!-- ABOUT DROPDOWN MOBILE (PLUS ICON) -->
+              <div class="relative">
+                <button
+                  class="w-full flex justify-between items-center px-4 py-2 text-[#72263b] hover:bg-[#72263b]/10 rounded transition focus:outline-none text-left text-sm"
+                  onclick="toggleMobileDropdown('aboutMobileDropdown', this)"
+                  type="button">
+                  About
+                  <span class="ml-2 text-lg leading-none">+</span>
+                </button>
+      
+                <div id="aboutMobileDropdown"
+                     class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out ml-4 mt-1 font-medium">
+                  <a href="index.html"
+                     class="block px-8 py-2 text-[#72263b] text-base hover:bg-[#72263b]/10 rounded transition">
+                    About Mayank Group
+                  </a>
+                  <a href="PromiseMG.html"
+                     class="block px-8 py-2 text-base text-[#c79731] bg-[#72263b]/10 font-bold rounded transition">
+                    Promise by Mayank Group
+                  </a>
+                  <a href="HistoryMG.html"
+                     class="block px-8 py-2 text-[#72263b] text-base hover:bg-[#72263b]/10 rounded transition">
+                    Mayank Group History
+                  </a>
+                </div>
+              </div>
+      
+              <a href="projectV.html" class="block px-4 py-2 text-[#72263b] hover:bg-[#72263b]/10 rounded transition text-base">
+                Projects
+              </a>
+              <a href="PartnersMG.html" class="block px-4 py-2 text-[#72263b] hover:bg-[#72263b]/10 rounded transition text-base">
+                Partners
+              </a>
+              <a href="Contact.html" class="block px-4 py-2 text-[#72263b] hover:bg-[#72263b]/10 rounded transition text-base">
+                Contact
+              </a>
+            </div>
+          </div>
+        </nav>
+      </header>
+      
+      <main>
+        <section id="home" class="hero">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <span>Premium Living in Palghar</span>
+            </div>
+            <h1>Paramount Enclave</h1>
+            <p class="hero-subtitle">
+              Spacious homes, lush surroundings and thoughtful amenities crafted by Mayank Group to elevate everyday living in Palghar.
+            </p>
+            <div class="hero-meta">
+              <span><i class="fa fa-map-marker-alt"></i> Palghar (East), near key conveniences</span>
+              <span><i class="fa fa-building"></i> 1, 2 &amp; 3 BHK Residences</span>
+              <span><i class="fa fa-tree"></i> Clubhouse, landscaped gardens &amp; more</span>
+            </div>
+            <div style="margin-top: 2rem;">
+              <a href="#contact" class="cta-button">Enquire Now</a>
+            </div>
+          </div>
+        </section>
+      </main>
+      
+      <script>
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+      
+        if (hamburger && mobileMenu) {
+          hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+          });
+        }
+      
+        function toggleMobileDropdown(id, btn) {
+          const el = document.getElementById(id);
+          if (!el) return;
+      
+          const isOpen = el.classList.contains('max-h-40');
+      
+          if (isOpen) {
+            el.classList.remove('max-h-40');
+            el.classList.add('max-h-0');
+          } else {
+            el.classList.remove('max-h-0');
+            el.classList.add('max-h-40'); // adjust if more links added
+          }
+        }
+      </script>
+      
+      
+    <main class="max-w-7xl mx-auto px-4 sm:px-8 py-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-[#c79731] mb-4 border-b-4 border-[#c79731] pb-3 text-center">
+            Our Promise to You
+        </h1>
+        <p class="text-xl text-center text-[#72263b] mb-12 max-w-3xl mx-auto leading-relaxed">
+            At Mayank Group, we don't just build homes—we build trust. Our promises are not just words; they are commitments backed by three decades of excellence and integrity.
+        </p>
+
+        <section class="space-y-8 mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gradient-to-br from-[#72263b]/5 to-[#c79731]/10 rounded-xl p-8 border-l-4 border-[#c79731] shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-[#c79731] rounded-full p-3 mr-4">
+                            <i class="fas fa-shield-alt text-white text-2xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-[#72263b]">Quality Assurance</h2>
+                    </div>
+                    <p class="text-base leading-relaxed text-[#72263b]">
+                        We promise uncompromising quality in every brick, every beam, and every detail. Our construction adheres to the highest industry standards, using premium materials and proven engineering practices. Every project undergoes rigorous quality checks at multiple stages to ensure your home stands strong for generations.
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-br from-[#72263b]/5 to-[#c79731]/10 rounded-xl p-8 border-l-4 border-[#c79731] shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-[#c79731] rounded-full p-3 mr-4">
+                            <i class="fas fa-clock text-white text-2xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-[#72263b]">Timely Delivery</h2>
+                    </div>
+                    <p class="text-base leading-relaxed text-[#72263b]">
+                        We understand that time is precious. Our promise is to deliver your dream home on schedule, without compromising on quality. With meticulous planning and efficient execution, we ensure that your investment matures as promised, allowing you to move into your new home when you expect to.
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-br from-[#72263b]/5 to-[#c79731]/10 rounded-xl p-8 border-l-4 border-[#c79731] shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-[#c79731] rounded-full p-3 mr-4">
+                            <i class="fas fa-handshake text-white text-2xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-[#72263b]">Transparency & Trust</h2>
+                    </div>
+                    <p class="text-base leading-relaxed text-[#72263b]">
+                        No hidden costs, no false promises. We maintain complete transparency in all our dealings—from pricing to documentation to project timelines. You'll always know exactly what you're investing in, with clear communication at every step of your journey with us.
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-br from-[#72263b]/5 to-[#c79731]/10 rounded-xl p-8 border-l-4 border-[#c79731] shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-[#c79731] rounded-full p-3 mr-4">
+                            <i class="fas fa-certificate text-white text-2xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-[#72263b]">Legal Compliance</h2>
+                    </div>
+                    <p class="text-base leading-relaxed text-[#72263b]">
+                        Every project is fully compliant with all local regulations, building codes, and legal requirements. We ensure all necessary approvals, clearances, and documentation are in place before construction begins, giving you complete peace of mind about the legality and legitimacy of your investment.
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-br from-[#72263b]/5 to-[#c79731]/10 rounded-xl p-8 border-l-4 border-[#c79731] shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-[#c79731] rounded-full p-3 mr-4">
+                            <i class="fas fa-headset text-white text-2xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-[#72263b]">Lifelong Support</h2>
+                    </div>
+                    <p class="text-base leading-relaxed text-[#72263b]">
+                        Our relationship with you doesn't end at handover. We promise ongoing support and maintenance assistance for your property. Our dedicated customer service team is always available to address your concerns and ensure your living experience remains exceptional.
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-br from-[#72263b]/5 to-[#c79731]/10 rounded-xl p-8 border-l-4 border-[#c79731] shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-[#c79731] rounded-full p-3 mr-4">
+                            <i class="fas fa-leaf text-white text-2xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-[#72263b]">Sustainable Living</h2>
+                    </div>
+                    <p class="text-base leading-relaxed text-[#72263b]">
+                        We promise to build responsibly, incorporating sustainable practices and eco-friendly features wherever possible. Our projects are designed to minimize environmental impact while maximizing your comfort and well-being, creating homes that are both luxurious and environmentally conscious.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="my-16 border-t border-gray-200"></div>
+
+        <section class="mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 border-b-2 border-[#c79731] pb-2 text-center">
+                The Mayank Group Commitment
+            </h2>
+            <div class="bg-gradient-to-r from-[#72263b] to-[#72263b]/90 rounded-2xl p-8 md:p-12 text-white shadow-2xl">
+                <div class="max-w-4xl mx-auto text-center space-y-6">
+                    <div class="text-5xl mb-6">
+                        <i class="fas fa-quote-left text-[#c79731]"></i>
+                    </div>
+                    <p class="text-xl md:text-2xl leading-relaxed font-medium italic">
+                        "For over 30 years, we have stood by our word. Every promise we make is a commitment we honor. When you choose Mayank Group, you're not just buying a property—you're investing in a legacy of trust, quality, and unwavering dedication to excellence."
+                    </p>
+                    <div class="pt-6 border-t border-[#c79731]/30">
+                        <p class="text-lg font-semibold text-[#c79731]">— Mayank Group</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 border-b-2 border-[#c79731] pb-2 text-center">
+                Why Our Promise Matters
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center p-6 rounded-lg bg-white border-2 border-[#c79731]/20 hover:border-[#c79731] transition-all duration-300">
+                    <div class="text-4xl font-bold text-[#c79731] mb-2">18+</div>
+                    <div class="text-lg font-semibold text-[#72263b] mb-2">Years of Excellence</div>
+                    <p class="text-sm text-gray-600">Three decades of delivering on our promises</p>
+                </div>
+                <div class="text-center p-6 rounded-lg bg-white border-2 border-[#c79731]/20 hover:border-[#c79731] transition-all duration-300">
+                    <div class="text-4xl font-bold text-[#c79731] mb-2">100%</div>
+                    <div class="text-lg font-semibold text-[#72263b] mb-2">Legal Compliance</div>
+                    <p class="text-sm text-gray-600">All projects fully approved and compliant</p>
+                </div>
+                <div class="text-center p-6 rounded-lg bg-white border-2 border-[#c79731]/20 hover:border-[#c79731] transition-all duration-300">
+                    <div class="text-4xl font-bold text-[#c79731] mb-2">1000+</div>
+                    <div class="text-lg font-semibold text-[#72263b] mb-2">Happy Families</div>
+                    <p class="text-sm text-gray-600">Trusted by families across the region</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="text-center bg-gradient-to-br from-[#72263b]/10 to-[#c79731]/10 rounded-2xl p-8 md:p-12 mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[#72263b]">
+                Ready to Experience Our Promise?
+            </h2>
+            <p class="text-lg text-[#72263b] mb-8 max-w-2xl mx-auto">
+                Join hundreds of satisfied families who have trusted Mayank Group to deliver on our promises. Let us help you find your dream home today.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="Contact.html" class="inline-block bg-[#72263b] text-white hover:bg-[#c79731] transition duration-300 py-3 px-8 rounded-lg text-base font-semibold shadow-md transform hover:scale-105">
+                    Contact Us Today
+                </a>
+                <a href="index.html" class="inline-block bg-white text-[#72263b] border-2 border-[#72263b] hover:bg-[#72263b] hover:text-white transition duration-300 py-3 px-8 rounded-lg text-base font-semibold shadow-md transform hover:scale-105">
+                    Explore Our Projects
+                </a>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-white pt-12 border-t border-[#72263b]/20" aria-labelledby="footer-title">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 text-center lg:text-left">
+                <!-- Logo & Socials -->
+                <section>
+                    <div class="mb-6">
+                        <div class="w-full max-w-xs mx-auto lg:mx-0">
+                            <img
+                                src="MGL.png"
+                                alt="Mayank Group Logo"
+                                class="max-h-24 w-auto rounded-md shadow-inner"
+                            />
+                        </div>
+                        <p class="mt-4 text-base leading-relaxed text-[#72263b]">
+                            Giving old cities, a new life… with a touch of luxury where memories once lived, dreams now begin to bloom. Where the land once wrote history, the future now writes its story.
+                            <br />
+                            <strong class="text-sm block mt-2 text-[#72263b]">Reach Out to us on…</strong>
+                        </p>
+                    </div>
+                    <!-- Social Media Icons -->
+                    <div class="flex space-x-4 text-2xl mt-2 justify-center lg:justify-start">
+                        <a href="#" class="text-[#72263b] hover:text-[#c79731] transition duration-300 rounded-full p-2" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-[#72263b] hover:text-[#c79731] transition duration-300 rounded-full p-2" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-[#72263b] hover:text-[#c79731] transition duration-300 rounded-full p-2" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/mayank.group?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="text-[#72263b] hover:text-[#c79731] transition duration-300 rounded-full p-2" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </section>
+                <!-- Legal Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-[#72263b]">Legal</h3>
+                    <ul class="space-y-2 text-[#72263b]">
+                        <li><a href="#" class="footer-link hover:text-[#c79731] transition block">Terms and Conditions</a></li>
+                        <li><a href="#" class="footer-link hover:text-[#c79731] transition block">Privacy Policy</a></li>
+                        <li><a href="#" class="footer-link hover:text-[#c79731] transition block">Copyright Notice</a></li>
+                        <li><a href="#" class="footer-link hover:text-[#c79731] transition block">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <!-- Properties List -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-[#72263b]">Properties</h3>
+                    <ul class="space-y-2 text-[#72263b]">
+                        <li><a href="#" class="footer-link hover:text-[#c79731] transition block">Vasai</a></li>
+                        <li><a href="#" class="footer-link hover:text-[#c79731] transition block">Nallasopara</a></li>
+                        <li><a href="#" class="footer-link hover:text-[#c79731] transition block">Boisar</a></li>
+                        <li><a href="#" class="footer-link hover:text-[#c79731] transition block">All Projects</a></li>
+                    </ul>
+                </div>
+                <!-- Contact Details -->
+                <div class="flex flex-col">
+                    <h4 class="text-lg font-semibold mb-4 text-[#72263b]">Contact Details</h4>
+                    <address class="not-italic text-base text-[#72263b] space-y-2 mb-4">
+                        <p>Shop No.02, Tania Sargam CHS LTD., Near The Capital Mall, Nallasopara East 401209</p>
+                        <p class="font-semibold text-[#72263b]">+91 9850841234</p>
+                        <p><a href="mailto:mayankreality@gmail.com" class="footer-link hover:text-[#c79731] transition">mayankreality@gmail.com</a></p>
+                    </address>
+                    <a href="Contact.html" class="mt-auto inline-block text-center py-3 px-6 bg-[#72263b] text-white text-base font-semibold rounded-lg shadow-md hover:bg-[#c79731] transition duration-300 transform hover:scale-[1.02]">
+                        Contact Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- COPYRIGHT SECTION -->
+    <div class="bg-white border-t border-[#72263b]/20 py-4 text-sm text-[#72263b]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
+            <p class="text-center md:text-left">
+                &copy; 2025 Mayank Group. All Rights Reserved.
+            </p>
+            <ul class="flex justify-center md:justify-end space-x-3 sm:space-x-5">
+                <li><a href="#" class="footer-link hover:text-[#c79731] transition">Privacy & Policy</a></li>
+                <li class="hidden sm:inline text-[#72263b]">|</li>
+                <li><a href="#" class="footer-link hover:text-[#c79731] transition">Site Map</a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (hamburger && mobileMenu) {
+                hamburger.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            window.toggleMobileDropdown = function(dropdownId, btn) {
+                const dropdown = document.getElementById(dropdownId);
+                const icon = btn.querySelector('svg');
+                if (dropdown.classList.contains('h-0')) {
+                    dropdown.classList.remove('h-0', 'hidden');
+                    dropdown.style.height = 'auto';
+                    const h = dropdown.scrollHeight + 'px';
+                    dropdown.style.height = '0';
+                    setTimeout(() => { dropdown.style.height = h; }, 0);
+                    icon.classList.add('rotate-180');
+                } else {
+                    dropdown.style.height = dropdown.scrollHeight + 'px';
+                    setTimeout(() => { dropdown.style.height = '0'; }, 0);
+                    dropdown.addEventListener('transitionend', function handler() {
+                        if (dropdown.style.height === '0px') {
+                            dropdown.classList.add('h-0', 'hidden');
+                        }
+                        dropdown.removeEventListener('transitionend', handler);
+                    });
+                    icon.classList.remove('rotate-180');
+                }
+            };
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redevelopment Services | Mayank Group</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #ffffff;
+            color: #6d2932; /* Primary text color for content */
+        }
+        .font-cinzel {
+            font-family: "Cinzel", serif;
+        }
+        ::placeholder {
+            color: #a0aec0;
+            opacity: 1;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #d4af37;
+        }
+        /* Define Brand Colors for Tailwind using CSS variables for consistency */
+        :root {
+            --color-maroon-dark: #6D2932; /* Used for headings and primary text */
+            --color-maroon-light: #800000; /* Used in old navbar classes */
+            --color-gold: #D4AF37;
+        }
+
+        /* Set default text color for body and links to the primary dark maroon */
+        .text-\[\#800000\] { color: var(--color-maroon-dark); }
+        .text-\[\#6D2932\] { color: var(--color-maroon-dark); }
+        .hover\:text-\[\#D4AF37\]:hover { color: var(--color-gold) !important; }
+
+        /* General link styling in footer to ensure correct color and hover */
+        .footer-link {
+            color: var(--color-maroon-dark);
+            transition: color 0.3s;
+        }
+        .footer-link:hover {
+            color: var(--color-gold) !important;
+        }
+    </style>
+</head>
+
+<body class="antialiased text-[#800000] bg-white">
+    <nav class="bg-white sticky top-0 z-30 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <img src="MGL.png" style="width: 250px; height: 60px;" alt="Mayank Group Logo" class="h-12 w-auto mr-3 rounded-md shadow-inner" />
+                    <span class="font-cinzel text-2xl font-bold text-[#800000]"></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="hover:text-[#D4AF37] transition">Home</a>
+
+                    <div class="relative dropdown" tabindex="0">
+                        <button
+                            id="aboutDropdownBtn"
+                            class="hover:text-[#D4AF37] flex items-center focus:outline-none text-[#800000]"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            type="button"
+                        >
+                            About
+                            <svg class="ml-1 w-4 h-4" fill="none" stroke="#800000" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div
+                            id="aboutDropdown"
+                            class="absolute left-0 mt-2 w-48 bg-white border border-[#D4AF37]/30 rounded-lg shadow-lg text-[#800000] hidden"
+                        >
+                            <a href="index.html" class="block px-4 py-2 hover:bg-[#800000]/10 transition">About Mayank Group</a>
+                            <a href="PromiseMG.html" class="block px-4 py-2 hover:bg-[#800000]/10 transition">Promise by Mayank Group</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-[#800000]/10 transition">Mayank Group History</a>
+                        </div>
+                    </div>
+
+                    <a href="projectV.html" class="hover:text-[#D4AF37] transition">Projects</a>
+                    <a href="#" class="hover:text-[#D4AF37] transition">Partners</a>
+                    <a href="Contact.html" class="hover:text-[#D4AF37] transition">Contact</a>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="hamburger" class="focus:outline-none" aria-label="Toggle menu">
+                        <svg class="w-8 h-8" fill="none" stroke="#800000" stroke-width="2" viewBox="0 0 24 24" role="img" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mobileMenu" class="md:hidden hidden flex-col space-y-1 pb-4 bg-white text-[#800000]">
+                <a href="Builders and Developers in Vasai Nalasopara _ Imperial Lifestyle – Imperial Builders.html" class="block px-4 py-2 hover:bg-[#800000]/10 rounded transition">Home</a>
+
+                <div class="relative">
+                    <button
+                        class="w-full flex justify-between items-center px-4 py-2 hover:bg-[#800000]/10 rounded transition focus:outline-none"
+                        onclick="toggleDropdown('aboutMobileDropdown')"
+                        type="button"
+                    >
+                        About
+                        <svg class="ml-2 w-4 h-4" fill="none" stroke="#800000" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="aboutMobileDropdown" class="hidden ml-4 mt-1">
+                        <a href="#" class="block px-4 py-2 hover:bg-[#800000]/10 rounded transition">About Mayank Group</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-[#800000]/10 rounded transition">Mayank Group History</a>
+                    </div>
+                </div>
+
+                <a href="projectV.html" class="block px-4 py-2 hover:bg-[#800000]/10 rounded transition">Projects</a>
+                <a href="#" class="block px-4 py-2 hover:bg-[#800000]/10 rounded transition">Partners</a>
+                <a href="#" class="block px-4 py-2 hover:bg-[#800000]/10 rounded transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <div class="text-center mb-12 md:mb-16">
+            <h1 class="font-cinzel text-4xl sm:text-5xl md:text-6xl font-bold text-[#D4AF37]">Redevelopment Projects</h1>
+            <p class="text-gray-600 mt-2 text-lg max-w-3xl mx-auto">
+                Transforming communities and creating value through expert redevelopment.
+            </p>
+        </div>
+
+        <div class="text-center mb-10 mt-20">
+            <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-[#6D2932]">Our Ongoing Projects</h2>
+            <div class="w-24 h-0.5 bg-[#D4AF37] mx-auto mt-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-20">
+            <div
+                class="bg-gray-50/50 border border-gray-200 rounded-lg p-6 flex flex-col"
+            >
+                <h3 class="font-cinzel text-2xl font-bold text-[#D4AF37] mb-4">
+                    TANIA SARGAM CHS LTD.
+                </h3>
+                <div class="space-y-4 text-gray-700 flex-grow">
+                    <p><strong>Location:</strong> Nalsopara Station / 1.5Km from Railway Station</p>
+                    <p><strong>Scope:</strong> G+3 Structure into a modern G+17 high-rise tower.</p>
+                    <p><strong>Units:</strong> 30 Flats & 04 Shops</p>
+                    <p><strong>Status:</strong> 79 A & Development Agreement Completed.</p>
+                </div>
+                <p class="text-sm text-gray-500 mt-6 pt-4 border-t border-gray-200">- Redeveloping By Mayank Realty -</p>
+            </div>
+
+            <div
+                class="bg-gray-50/50 border border-gray-200 rounded-lg p-6 flex flex-col"
+            >
+                <h3 class="font-cinzel text-2xl font-bold text-[#D4AF37] mb-4">
+                    TANIA MELODY CHS LTD.
+                </h3>
+                <div class="space-y-4 text-gray-700 flex-grow">
+                    <p><strong>Location:</strong> Nalsopara Station / 1.5Km from Railway Station</p>
+                    <p><strong>Scope:</strong> G+4 Structure into a modern G+17 high-rise tower.</p>
+                    <p><strong>Units:</strong> 25 Flats</p>
+                    <p><strong>Status:</strong> 79 A & Development Agreement Completed.</p>
+                </div>
+                <p class="text-sm text-gray-500 mt-6 pt-4 border-t border-gray-200">- Redeveloping By Mayank Realty -</p>
+            </div>
+
+            <div
+                class="bg-gray-50/50 border border-gray-200 rounded-lg p-6 flex flex-col"
+            >
+                <h3 class="font-cinzel text-2xl font-bold text-[#D4AF37] mb-4">
+                    TANIA LEGEND CHS LTD.
+                </h3>
+                <div class="space-y-4 text-gray-700 flex-grow">
+                    <p><strong>Location:</strong> Nalsopara Station / 1.5Km from Railway Station</p>
+                    <p><strong>Scope:</strong> G+3 Structure into a modern G+17 high-rise tower.</p>
+                    <p><strong>Units:</strong> 30 Flats & 04 Shops</p>
+                    <p><strong>Status:</strong> 79 A in process.</p>
+                </div>
+                <p class="text-sm text-gray-500 mt-6 pt-4 border-t border-gray-200">- Redeveloping By Mayank Realty -</p>
+            </div>
+
+            <div
+                class="bg-gray-50/50 border border-gray-200 rounded-lg p-6 flex flex-col"
+            >
+                <h3 class="font-cinzel text-2xl font-bold text-[#D4AF37] mb-4">
+                    MAYURESH CHS LTD.
+                </h3>
+                <div class="space-y-4 text-gray-700 flex-grow">
+                    <p><strong>Location:</strong> Nalsopara Station / 1 Km from Railway Station</p>
+                    <p><strong>Scope:</strong> G+2 Structure into a modern G+7 high-rise tower.</p>
+                    <p><strong>Units:</strong> 18 Flats</p>
+                    <p><strong>Status:</strong> 79 A & DA Completed. File put up for CC.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mb-10 mt-20">
+            <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-[#6D2932]">Inquire About Redevelopment</h2>
+            <div class="w-24 h-0.5 bg-[#D4AF37] mx-auto mt-4"></div>
+            <p class="text-gray-600 mt-4 text-base max-w-2xl mx-auto">
+                If your society or building is considering redevelopment, partner with us to unlock its true
+                potential. Fill out the form below to start a conversation.
+            </p>
+        </div>
+
+        <div class="w-full max-w-3xl mx-auto">
+            <form id="redevelopmentForm" class="space-y-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+                    <div class="relative">
+                        <label
+                            for="societyName"
+                            class="absolute -top-3.5 left-0 text-sm text-[#6D2932] font-semibold"
+                            >Society / Building Name</label
+                        >
+                        <input
+                            type="text"
+                            id="societyName"
+                            name="societyName"
+                            class="form-input w-full bg-transparent border-0 border-b-2 border-gray-300 py-2 text-gray-800 focus:border-[#D4AF37]"
+                            placeholder="e.g., Harmony Apartments"
+                            required
+                        />
+                    </div>
+
+                    <div class="relative">
+                        <label
+                            for="contactPerson"
+                            class="absolute -top-3.5 left-0 text-sm text-[#6D2932] font-semibold"
+                            >Contact Person</label
+                        >
+                        <input
+                            type="text"
+                            id="contactPerson"
+                            name="contactPerson"
+                            class="form-input w-full bg-transparent border-0 border-b-2 border-gray-300 py-2 text-gray-800 focus:border-[#D4AF37]"
+                            placeholder="e.g., Mr. John Doe"
+                            required
+                        />
+                    </div>
+
+                    <div class="relative">
+                        <label
+                            for="phone"
+                            class="absolute -top-3.5 left-0 text-sm text-[#6D2932] font-semibold"
+                            >Contact Number</label
+                        >
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            class="form-input w-full bg-transparent border-0 border-b-2 border-gray-300 py-2 text-gray-800 focus:border-[#D4AF37]"
+                            placeholder="(123) 456-7890"
+                            required
+                        />
+                    </div>
+
+                    <div class="relative">
+                        <label
+                            for="email"
+                            class="absolute -top-3.5 left-0 text-sm text-[#6D2932] font-semibold"
+                            >Email Address</label
+                        >
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="form-input w-full bg-transparent border-0 border-b-2 border-gray-300 py-2 text-gray-800 focus:border-[#D4AF37]"
+                            placeholder="john.doe@example.com"
+                            required
+                        />
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <label
+                        for="address"
+                        class="absolute -top-3.5 left-0 text-sm text-[#6D2932] font-semibold"
+                        >Property Address</label
+                    >
+                    <input
+                        type="text"
+                        id="address"
+                        name="address"
+                        class="form-input w-full bg-transparent border-0 border-b-2 border-gray-300 py-2 text-gray-800 focus:border-[#D4AF37]"
+                        placeholder="Full address of the property"
+                        required
+                    />
+                </div>
+
+                <div class="relative">
+                    <label
+                        for="message"
+                        class="absolute -top-3.5 left-0 text-sm text-[#6D2932] font-semibold"
+                        >Brief Details / Message</label
+                    >
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="4"
+                        class="form-input w-full bg-transparent border-0 border-b-2 border-gray-300 py-2 text-gray-800 focus:border-[#D4AF37] resize-none"
+                        placeholder="Tell us about the property, number of units, etc."
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="text-center pt-4">
+                    <button
+                        type="submit"
+                        class="bg-[#D4AF37] text-[#6D2932] font-bold py-3 px-12 rounded-lg hover:bg-[#c0a062] transition-all duration-300 ease-in-out transform hover:scale-105"
+                    >
+                        Submit Inquiry
+                    </button>
+                    <p id="statusMessage" class="mt-4 text-gray-700 text-sm h-5"></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer
+        class="bg-white pt-12 border-t border-gray-200"
+    >
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 text-center lg:text-left">
+
+                <div class="flex flex-col items-center lg:items-start col-span-1 lg:col-span-1">
+                    <div class="mb-6">
+                        <div class="w-full max-w-xs mx-auto lg:mx-0">
+                            <img
+                                src="MGL.png"
+                                alt="Mayank Group Logo"
+                                class="max-h-24 w-auto rounded-md shadow-inner"
+                            />
+                        </div>
+                        <p class="mt-4 text-base leading-relaxed text-gray-600">
+                            Giving old cities, a new life… with a touch of luxury where memories once lived, dreams now begins to bloom. Where the land once wrote history, the future now writes its story.
+                            <br class="hidden sm:inline" />
+                            <strong class="text-sm block mt-2 text-[#6D2932]">Reach Out to us on…</strong>
+                        </p>
+                    </div>
+                    <div class="flex space-x-4 text-2xl mt-2">
+                        <a href="" class="text-blue-700 hover:text-[#D4AF37] transition duration-300" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="" class="text-red-600 hover:text-[#D4AF37] transition duration-300" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="" class="text-blue-800 hover:text-[#D4AF37] transition duration-300" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/mayank.group?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="text-pink-600 hover:text-[#D4AF37] transition duration-300" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-span-1">
+                    <h3 class="text-lg font-semibold mb-4 text-[#6D2932]">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="footer-link hover:text-[#D4AF37] transition block">Terms and Conditions</a></li>
+                        <li><a href="#" class="footer-link hover:text-[#D4AF37] transition block">Privacy Policy</a></li>
+                        <li><a href="#" class="footer-link hover:text-[#D4AF37] transition block">Copyright Notice</a></li>
+                        <li><a href="#" class="footer-link hover:text-[#D4AF37] transition block">Disclaimer</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-span-1">
+                    <h3 class="text-lg font-semibold mb-4 text-[#6D2932]">Properties</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="footer-link hover:text-[#D4AF37] transition block">Vasai</a></li>
+                        <li><a href="#" class="footer-link hover:text-[#D4AF37] transition block">Nallasopara</a></li>
+                        <li><a href="#" class="footer-link hover:text-[#D4AF37] transition block">Boisar</a></li>
+                        <li><a href="#" class="footer-link hover:text-[#D4AF37] transition block">All Projects</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-span-1">
+                    <h4 class="text-lg font-semibold mb-4 text-[#6D2932]">Contact Details</h4>
+                    <address class="not-italic text-base text-gray-600 space-y-2">
+                        <p>Shop No.02, Tania Sargam CHS LTD., Near The Capital Mall, Nallasopara East 401209</p>
+                        <p class="font-semibold text-[#6D2932]">+91 9850841234</p>
+                        <p><a href="mailto:mayankreality@gmail.com" class="footer-link hover:text-[#D4AF37] transition">mayankreality@gmail.com</a></p>
+                    </address>
+                    <a href="Contact.html" class="mt-6 inline-block w-full py-3 bg-[#6D2932] text-white text-base font-semibold rounded-md shadow-md hover:bg-[#800000] transition duration-300 max-w-xs md:max-w-none">
+                        Contact Now
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <div class="bg-gray-100 border-t border-gray-200 py-4 text-sm text-gray-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
+                <div class="text-center md:text-left">
+                    <p>
+                        &copy; 2025 Mayank Group. All Rights Reserved.
+                    </p>
+                </div>
+                <div class="text-center md:text-right">
+                    <ul class="flex justify-center md:justify-end space-x-3 sm:space-x-5">
+                        <li>
+                            <a href="#" class="footer-link hover:text-[#D4AF37] transition">Privacy & Policy</a>
+                        </li>
+                        <li class="hidden sm:inline text-[#6D2932]">|</li>
+                        <li>
+                            <a href="#" class="footer-link hover:text-[#D4AF37] transition">Site Map</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const form = document.getElementById("redevelopmentForm");
+        const statusMessage = document.getElementById("statusMessage");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            if (form.checkValidity()) {
+                statusMessage.textContent = "Thank you for your inquiry. We will be in touch shortly.";
+                statusMessage.style.color = "#16a34a"; // Tailwind green-600
+                setTimeout(() => {
+                    form.reset();
+                    statusMessage.textContent = "";
+                }, 5000);
+            } else {
+                statusMessage.textContent = "Please fill out all required fields correctly.";
+                statusMessage.style.color = "#dc2626"; // Tailwind red-600
+            }
+        });
+
+        // Hamburger toggle
+        const hamburger = document.getElementById("hamburger");
+        const mobileMenu = document.getElementById("mobileMenu");
+        hamburger.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        // Mobile dropdown toggles
+        function toggleDropdown(id) {
+            document.getElementById(id).classList.toggle("hidden");
+        }
+
+        // Desktop dropdown toggles (re-added logic for hover effect)
+        const aboutBtn = document.getElementById("aboutDropdownBtn");
+        const aboutMenu = document.getElementById("aboutDropdown");
+
+        const projectsBtn = document.getElementById("projectsDropdownBtn");
+        const projectsMenu = document.getElementById("projectsDropdown");
+
+        aboutBtn.addEventListener("click", () => {
+            aboutMenu.classList.toggle("hidden");
+            if (!projectsMenu.classList.contains("hidden")) {
+                projectsMenu.classList.add("hidden");
+            }
+        });
+
+        projectsBtn.addEventListener("click", () => {
+            projectsMenu.classList.toggle("hidden");
+            if (!aboutMenu.classList.contains("hidden")) {
+                aboutMenu.classList.add("hidden");
+            }
+        });
+
+        // Close desktop dropdowns if clicking outside
+        document.addEventListener("click", (event) => {
+            if (
+                !aboutBtn.contains(event.target) &&
+                !aboutMenu.contains(event.target)
+            ) {
+                aboutMenu.classList.add("hidden");
+            }
+            if (
+                !projectsBtn.contains(event.target) &&
+                !projectsMenu.contains(event.target)
+            ) {
+                projectsMenu.classList.add("hidden");
+            }
+        });
+    </script>
+</body>
+
+</html> -->

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slideshow Banner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      /* Added for demonstration to show content below */
+      background-color: #f0f0f0; 
+    }
+    .slideshow-section {
+      position: relative;
+      width: 100%;
+      /* This height works well for a hero banner */
+      height: 70vh; 
+      min-height: 400px; /* Ensures a minimum height on narrow screens */
+      overflow: hidden;
+      background: #000;
+    }
+    .slideshow-section::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.45);
+      z-index: 1;
+    }
+    .slideshow-image {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: auto;
+      object-fit: cover;
+      opacity: 0;
+      animation-name: fadeEffect;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+    }
+    @keyframes fadeEffect {
+      0% { opacity: 0; transform: scale(1.06);}
+      17% { opacity: 1;}
+      33% { opacity: 1;}
+      50% { opacity: 0; transform: scale(1);}
+      100% { opacity: 0;}
+    }
+    .slideshow-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      padding: 2vw;
+    }
+    .slideshow-content h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: 0.8em;
+      text-shadow: 2px 2px 12px rgba(0,0,0,0.65);
+    }
+    .slideshow-content p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      max-width: 85%;
+      text-shadow: 1px 1px 7px rgba(0,0,0,0.6);
+    }
+    /* Simple styling for demonstration purposes */
+    .nav-bar {
+        padding: 15px;
+        background-color: #fff;
+        text-align: center;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .other-component {
+        padding: 40px;
+        text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="nav-bar">
+  Navigation Bar
+</div>
+
+<div class="slideshow-section" id="slideshow-section">
+  <div class="slideshow-content">
+    <h2>Paramount Enclave</h2>
+    <p>Discover modern living at its finest.</p>
+  </div>
+</div>
+
+<div class="other-component">
+  <h2>About Our Properties</h2>
+  <p>This is where the next section of your page begins.</p>
+</div>
+
+<script>
+  const imageUrls = [
+    'banner1.png',
+    'banner2.png',
+    'banner3.png'
+  ];
+  
+  const slideDuration = 5;
+  const container = document.getElementById('slideshow-section');
+  const totalDuration = imageUrls.length * slideDuration;
+
+  imageUrls.forEach((url, index) => {
+    const img = document.createElement('img');
+    img.src = url;
+    img.alt = `Background slide ${index + 1}`;
+    img.classList.add('slideshow-image');
+    img.style.animationDuration = `${totalDuration}s`;
+    img.style.animationDelay = `${index * slideDuration}s`;
+    container.appendChild(img);
+  });
+</script>
+
+</body>
+</html>
